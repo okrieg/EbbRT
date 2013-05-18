@@ -7,6 +7,7 @@ namespace ebbrt {
   class App : public EbbRep {
   public:
     virtual void Start() = 0;
+    virtual ~App() {}
   };
   extern char app_id_resv __attribute__ ((section ("static_ebb_ids")));
   extern "C" char static_ebb_ids_start[];
