@@ -4,7 +4,7 @@
 #include <map>
 
 #include "ebb/ebb.hpp"
-#include "ebb/EbbAllocator/EbbAllocator.hpp"
+#include "ebb/EbbManager/EbbManager.hpp"
 
 namespace ebbrt {
   /**
@@ -21,10 +21,10 @@ namespace ebbrt {
       if (it == reps_.end()) {
         // No rep for this location
         ref = new T();
-        ebb_allocator->CacheRep(id, ref);
+        ebb_manager->CacheRep(id, ref);
         reps_[get_location()] = ref;
       } else {
-        ebb_allocator->CacheRep(id, it->second);
+        ebb_manager->CacheRep(id, it->second);
         ref = it->second;
       }
       *reinterpret_cast<EbbRep**>(args) = ref;
