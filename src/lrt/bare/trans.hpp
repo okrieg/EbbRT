@@ -90,6 +90,7 @@ namespace ebbrt {
       template <class T>
       class Ebb {
       public:
+        Ebb() : ref_{reinterpret_cast<T**>(LOCAL_MEM_VIRT)} {}
         explicit Ebb(EbbId id) :
           ref_{reinterpret_cast<T**>
             (&(reinterpret_cast<LocalEntry*>(LOCAL_MEM_VIRT)[id]))} {}
