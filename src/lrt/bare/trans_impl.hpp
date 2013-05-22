@@ -15,7 +15,7 @@ namespace ebbrt {
       const std::ptrdiff_t NUM_LOCAL_ENTRIES = LTABLE_SIZE / sizeof(LocalEntry);
 
       /**
-       * @brief Set up and process a miss on the local translation table. 
+       * @brief Set up and process a miss on the local translation table.
        * This function is upcalled from assembly, while we are running on an
        * alternative stack.
        *
@@ -23,7 +23,7 @@ namespace ebbrt {
        * @param fnum
        * @param fret
        *
-       * @return 
+       * @return
        */
       extern "C" bool _trans_precall(Args* args,
                                      ptrdiff_t fnum,
@@ -34,7 +34,7 @@ namespace ebbrt {
        *
        * @param ret
        *
-       * @return 
+       * @return
        */
       extern "C" void* _trans_postcall(void* ret);
 
@@ -47,11 +47,21 @@ namespace ebbrt {
       void cache_rep(EbbId id, EbbRep* rep);
 
       /** @brief This is the root to be called on all misses to find the
-       * appropriate root 
+       * appropriate root
        *
        * @param root
        */
       void install_miss_handler(EbbRoot* root);
+
+      class RootBinding {
+      public:
+        ebbrt::lrt::trans::EbbId id;
+        ebbrt::lrt::trans::EbbRoot* root;
+      };
+      /**
+       * @brief Initial table that cannot be modified
+       */
+      extern RootBinding* initial_root_table;
 
       /**
        * @brief Initial root miss handler
