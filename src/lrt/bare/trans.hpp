@@ -90,6 +90,7 @@ namespace ebbrt {
       template <class T>
       class Ebb {
       public:
+	// default constructor, points to NULL Ebb
         Ebb() : ref_{reinterpret_cast<T**>(LOCAL_MEM_VIRT)} {}
         explicit Ebb(EbbId id) :
           ref_{reinterpret_cast<T**>
